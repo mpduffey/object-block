@@ -1,0 +1,51 @@
+div, input {
+	display: inline-block;
+}
+li .select-object {
+	float: left;
+	outline-style: none;
+	margin: 2px;
+}
+.complete-box {
+	width: 12px;
+	height: 12px;
+	position: relative;
+	float: left;
+	margin: 1px;
+	padding: 0;
+	top:0;
+	cursor: default;
+	border-style: groove;
+	border-width: 1px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.complete-box i {
+	color: lightgray;
+	padding:0 0 0 -2px;
+	margin: 0;
+	display: inline-block;
+	position: absolute;
+	top:0;
+	left:0;
+}
+.complete-box:hover {
+	color:				navy;
+	border-color: gray;
+	cursor: 			pointer;
+}
+.handle {
+	float: left;
+}
+.ui-icon {
+	display: block;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background-image: url("/app/components/object-block/ui-icons_222222_256x240.png");
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+.ui-icon-carat-2-n-s {
+	background-position: -128px 0px;
+}

@@ -1,0 +1,30 @@
+<div class="object-block-header max-width flex-container-row">
+	<div class="handle" title='Reorder "{{object.ObjectName}}"'><span class='ui-icon ui-icon-carat-2-n-s' style="width: 16px;"></span></div>
+	<input type="checkbox" class="select-object static-flex-item" [(ngModel)]="object.select">
+	<div class="complete-box static-flex-item" title='Mark "{{object.ObjectName}}" complete' [ngClass]="{complete: object.Complete}" (click)="toggleComplete(object)"><i class="fa fa-check fa-lg"></i></div>
+	<div class="object-name flex-item" (click)="showEditInput($event, editInput)" *ngIf="!showEdit">{{object.ObjectName}}</div>
+	<input type="text" #editInput class="flex-item edit-input" [(ngModel)]="object.ObjectName" (dblclick)="saveEditInput(object)" *ngIf="showEdit">
+	<div class="block-icon-host">
+		<i class="fa fa-tree pointer block-icon" style="margin-top: 3px;" (click)="showTree = !showTree;"></i>
+		<i class="fa fa-external-link pointer block-icon" style="margin-top: 3px;" (click)="openTab(object)"></i>
+		<ng-menu [menu-object]="menu" class="block-icon"></ng-menu>
+		<i class="fa fa-times fa-lg red-text pointer block-icon" (click)="deleteObject(object.ObjectID)" aria-hidden="true"></i>
+		<i class="fa fa-caret-right fa-lg pointer block-icon" *ngIf="!showDetail" (click)="showObjectDetail()"></i>
+		<i class="fa fa-caret-down fa-lg pointer block-icon" *ngIf="showDetail" (click)="showDetail=false;"></i>
+	</div>
+</div>
+<controller #treeCtrl *ngIf="showTree" compact="true" [initial-tags]="treeTags" initialize-ctrl="true" [ngStyle]="{'width': '100%', 'margin-right': '7px'}"></controller>
+<div class="detail" *ngIf="showDetail">
+	<tabs class="max-height">
+		<tab tabTitle="Detail" active="true">
+			<object-form [object]="object" class="max-height" slimscroll></object-form>
+		</tab>
+		<tab tabTitle="Notes">
+			<textarea [(ngModel)]="object.ObjectNotes"></textarea>
+			<button class="btn btn-xs btn-primary" style="margin-top: 5px;" (click)="saveObject(object)">Save</button>
+		</tab>
+		<tab tabTitle="Controller">
+			<controller #ctrl class="max-height" [initial-tags]="object.ObjectID" [ngStyle]="{'width': '100%', 'margin-right': '7px'}"></controller>
+		</tab>
+	</tabs>
+</div>
