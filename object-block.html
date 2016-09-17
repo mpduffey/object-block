@@ -20,8 +20,8 @@
 			<object-form [object]="object" class="max-height" slimscroll></object-form>
 		</tab>
 		<tab tabTitle="Notes">
-			<textarea [(ngModel)]="object.ObjectNotes"></textarea>
-			<button class="btn btn-xs btn-primary" style="margin-top: 5px;" (click)="saveObject(object)">Save</button>
+			<button class="btn btn-xs btn-primary" style="margin-top: 5px;" (click)="saveObjectNotes(objectNotes)">Save</button>
+			<textarea #objectNotes [ngModel]="object.ObjectNotes"></textarea>
 		</tab>
 		<tab tabTitle="Controller">
 			<controller #ctrl class="max-height" [initial-tags]="object.ObjectID" [ngStyle]="{'width': '100%', 'margin-right': '7px'}"></controller>

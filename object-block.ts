@@ -1,7 +1,7 @@
 import {Component, Input, ChangeDetectionStrategy, AfterContentInit, forwardRef, ViewChild, Output, EventEmitter} from '@angular/core';
 import {Tab, Tabs} from 'components/tabs/tabs';
 import {Controller} from 'components/controller/controller';
-import {ObjectService} from 'services/objects.service';
+import {ObjectService} from 'services/object-service/objects.service';
 import {Slimscroll} from 'components/slimscroll/slimscroll';
 import {ObjectForm} from 'components/object-form/object-form';
 import {Menu} from 'components/menu/menu';
@@ -21,8 +21,8 @@ import {DesktopService} from 'components/desktop/desktop.service';
 			position: relative;
 			background: #f2f6f8;
 			list-style:none;
-			-moz-border-radius: 3px;
-			border-radius: 3px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
 		`,
 		class:		'flex-item'
 	},
@@ -44,7 +44,6 @@ import {DesktopService} from 'components/desktop/desktop.service';
 		.object-block-header {
 			border: solid gray thin;
 			border-radius: 3px;
-			box-shadow: 2px 2px 1px #888888;
 			/* Old browsers */
 			background: -moz-linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #c9d5e5 67%, #e0eff9 100%);
 			/* FF3.6+ */
@@ -183,6 +182,10 @@ export class ObjectBlock implements AfterContentInit {
 	}
 	saveObject = (obj) => {
 		this._objectService.saveObject(obj).subscribe(res => console.log(res));
+	}
+	saveObjectNotes = (objNotes) => {
+		this.object.ObjectNotes = objNotes.value;
+		this.saveObject(this.object);
 	}
 	openTab = (obj) => {
 		let newTab = {
